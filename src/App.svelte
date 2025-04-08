@@ -57,9 +57,10 @@
         <main class="flex-grow container py-8">
             <Route path="/">
                 <div class="flex flex-col items-center justify-center min-h-[calc(100vh-200px)]">
-                    <h1 class="text-3xl font-bold mb-4">aquif-3.0-preview-1 is here</h1>
+                    <h1 class="text-3xl font-bold mb-4">"aquif-3.0 is very good"</h1>
+                    <p class="text-lg mb-8">- 𝕮𝖗𝖔𝖎𝖘𝖘𝖆𝖓𝖙, 2025</p>
                     <a href="/blog" class="inline-block px-6 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors">
-                        Check it out on the blog
+                        aquif-3.0-preview-1 is on the blog
                     </a>
                 </div>
             </Route>
