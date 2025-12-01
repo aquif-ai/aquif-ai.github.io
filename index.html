@@ -4,39 +4,306 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>aquif AI</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #e8e4e4;
+            --text-main: #302f2f;
+            --text-secondary: #4b4b4b;
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-mono: 'Space Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-serif);
+            display: flex;
+            min-height: 100vh;
+            overflow-x: hidden;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        /* Layout Structure */
+        .container {
+            display: flex;
+            width: 100%;
+            max-width: 1440px;
+            margin: 0 auto;
+        }
+
+        /* Left Column (Title/Slogan) */
+        .left-col {
+            width: 35%;
+            padding: 4rem;
+            position: fixed;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-right: 1px solid rgba(48, 47, 47, 0.1);
+        }
+
+        .slogan-box h1 {
+            font-family: var(--font-serif);
+            font-weight: 300;
+            font-size: 3.5rem;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        .slogan-box h1 span {
+            display: block;
+            font-style: italic;
+        }
+
+        .brand-corner {
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            text-transform: lowercase;
+            opacity: 0.7;
+        }
+
+        /* Right Column (Content) */
+        .right-col {
+            margin-left: 35%;
+            width: 65%;
+            padding: 4rem 6rem;
+        }
+
+        header {
+            margin-bottom: 6rem;
+        }
+
+        .brand-name {
+            font-family: var(--font-mono);
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: -0.05em;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+            border-bottom: 2px solid var(--text-main);
+            padding-bottom: 2px;
+        }
+
+        /* Models Section */
+        .section-title {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        .model-list {
+            list-style: none;
+        }
+
+        .model-item {
+            border-top: 1px solid rgba(75, 75, 75, 0.2);
+            padding: 2rem 0;
+            transition: padding-left 0.3s ease;
+        }
+
+        .model-item:last-child {
+            border-bottom: 1px solid rgba(75, 75, 75, 0.2);
+        }
+
+        .model-item:hover {
+            padding-left: 1rem;
+        }
+
+        .model-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.5rem;
+        }
+
+        .model-name {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--text-main);
+            text-decoration: none;
+        }
+
+        .model-meta {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .model-desc {
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            max-width: 80%;
+            margin-top: 0.5rem;
+        }
+
+        /* Links Section */
+        .links-section {
+            margin-top: 6rem;
+            display: flex;
+            gap: 2rem;
+        }
+
+        .btn {
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            text-decoration: none;
+            color: var(--bg-color);
+            background-color: var(--text-main);
+            padding: 1rem 1.5rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background-color: var(--text-secondary);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--text-main);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--text-main);
+            color: var(--bg-color);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .container {
+                flex-direction: column;
+            }
+            .left-col {
+                width: 100%;
+                position: relative;
+                height: auto;
+                padding: 3rem;
+                border-right: none;
+                border-bottom: 1px solid rgba(48, 47, 47, 0.1);
+            }
+            .right-col {
+                width: 100%;
+                margin-left: 0;
+                padding: 3rem;
+            }
+            .slogan-box h1 {
+                font-size: 2.5rem;
+            }
+            .model-name {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1 class="logo">aquif</h1>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="models.html">aquif-3.5</a></li>
-                <li><a href="about.html">About</a></li>
-            </ul>
-        </nav>
-        </div>
-    </header>
 
-    <main>
-        <section id="home" class="hero">
-            <div class="container">
-                <h2 class="typewriter">aquif-3.5 is here</h2>
-                <p>...and now in 5 flavors.</p>
-            </div>
+<div class="container">
+    <aside class="left-col">
+        <div class="slogan-box">
+            <h1>The leading <span>brazilian</span> open-source AI lab</h1>
+        </div>
+        <div class="brand-corner">
+            est. 2024 — brazil
+        </div>
+    </aside>
+
+    <main class="right-col">
+        <header>
+            <div class="brand-name">aquif AI</div>
+        </header>
+
+        <section>
+            <span class="section-title">Model Index</span>
+            <ul class="model-list">
+                <li class="model-item">
+                    <div class="model-header">
+                        <span class="model-name">aquif-3.5-Max</span>
+                        <span class="model-meta">42B Params • Text Gen</span>
+                    </div>
+                    <p class="model-desc">Our most powerful flagship model built on Qwen3 architecture.</p>
+                </li>
+                
+                <li class="model-item">
+                    <div class="model-header">
+                        <span class="model-name">aquif-3.5-Plus</span>
+                        <span class="model-meta">30B Params • Text Gen</span>
+                    </div>
+                    <p class="model-desc">Balanced performance for demanding production workloads.</p>
+                </li>
+
+                <li class="model-item">
+                    <div class="model-header">
+                        <span class="model-name">aquif-4-Exp</span>
+                        <span class="model-meta">16B Params • Hybrid Attention</span>
+                    </div>
+                    <p class="model-desc">Experimental reasoning model featuring long context at scale.</p>
+                </li>
+
+                <li class="model-item">
+                    <div class="model-header">
+                        <span class="model-name">aquif-Spatial</span>
+                        <span class="model-meta">7B Params • Vision</span>
+                    </div>
+                    <p class="model-desc">SOTA open weights embodied tasks model.</p>
+                </li>
+
+                <li class="model-item">
+                    <div class="model-header">
+                        <span class="model-name">aquif-Grounding</span>
+                        <span class="model-meta">7B Params • Vision</span>
+                    </div>
+                    <p class="model-desc">Specialized for computer use and UI navigation.</p>
+                </li>
+
+                <li class="model-item">
+                    <div class="model-header">
+                        <span class="model-name">aquif-3.6</span>
+                        <span class="model-meta">8B Params • Efficient</span>
+                    </div>
+                    <p class="model-desc">Next-gen efficient thinking model adaptive to user queries.</p>
+                </li>
+
+                <li class="model-item">
+                    <div class="model-header">
+                        <span class="model-name">aquif-Dream-Exp</span>
+                        <span class="model-meta">6B Params • Text-to-Video</span>
+                    </div>
+                    <p class="model-desc">Experimental video generation with non-intrusive audio merging.</p>
+                </li>
+            </ul>
         </section>
 
+        <section class="links-section">
+            <a href="https://github.com/aquif-ai" class="btn" target="_blank">GitHub Profile</a>
+            <a href="https://github.com/aquif-ai/aquif-4" class="btn btn-outline" target="_blank">aquif-4 Inference</a>
+            <a href="https://github.com/aquif-ai/aquif-ai.github.io" class="btn btn-outline" target="_blank">Website Repo</a>
+        </section>
+        
+        <footer style="margin-top: 4rem; font-family: var(--font-mono); font-size: 0.7rem; opacity: 0.5;">
+            <p>&copy; 2025 aquif AI. Open weights for the world.</p>
+        </footer>
     </main>
+</div>
 
-    <footer class="main-footer">
-        <div class="container">
-            <p>&copy; 2025 aquif AI. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
 </body>
 </html>
